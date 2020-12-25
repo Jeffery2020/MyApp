@@ -13,12 +13,15 @@ import { AppComponent } from './app.component';
 import { AppRoutes } from './app.route';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(AppRoutes),
+  ],
   declarations: [
     AppComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
