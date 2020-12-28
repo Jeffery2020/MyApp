@@ -1,28 +1,58 @@
 /*
-* @Description:根模块
-* @Author: Jeffery
-* @Date: 2020/12/25
-*/
+ * @Author: Jeffery
+ * @LastEditors  : Please set LastEditors
+ * @Description: 根模块
+ * @email: 286630433@qq.com
+ * @Date: 2019-04-16 15:57:43
+ * @LastEditTime : 2020-03-02 14:40:08
+ */
 import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
+import { FccomponentModule } from 'src/fccomponents';
+import { FccoreModule } from 'src/fccore/fccore.module';
+import { SharedModule } from 'src/shared/shared.module';
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.route';
+import { LayoutModule } from './components/layout/layout.module';
+import { LayoutService } from './service/layout.service';
+import { FcRouteReuseStrategy } from './service/routereusestrategy.service';
+import { ShareService } from './share.service';
+import { SyssigninComponent } from 'src/feature/fc/fcsystem/components/syspassword/syssignin/syssignin.component';
+import { UserService } from 'src/fccore/service/user.service';
+
+registerLocaleData(zh);
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
+    FccoreModule,
+    FccomponentModule,
+    SharedModule,
+    LayoutModule
   ],
   declarations: [
-    AppComponent
-  ],
+    AppComponent, // app入口
 
-  providers: [],
+    SyssigninComponent, // 组件-登录
+  ],
+  providers: [
+    UserService, // 服务-用户
+    ShareService,
+    LayoutService, // 服务-layout
+    { provide: RouteReuseStrategy, useClass: FcRouteReuseStrategy }, // 路由复用策略
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() { }
+}

@@ -1,0 +1,24 @@
+<!--
+ * @Author: Jeffery
+ * @Date: 2019-10-17 09:45:06
+ * @LastEditors: Jeffery
+ * @LastEditTime: 2019-10-17 09:58:59
+ * @Description:
+ * @email: 286630433@qq.com
+ -->
+<div class="fc-verifycode">
+  <input id="codeValid" name="codeValid" maxlength="4" class="form-control" required #codeValid="ngModel" type="text"
+    nz-input [(ngModel)]="fcCode" (ngModelChange)="changeValue($event)" [(fcVerifyCodeName)]="validVerifyCode"
+    placeholder="请输入验证码" />
+  <canvas id="verifyCode" #verifyCode width="100" height="28" (click)="draw([]);"></canvas>
+  <div class="fc-form-error" *ngIf="codeValid.invalid && (codeValid.dirty || codeValid.touched)">
+    <div>
+      <div *ngIf="codeValid.errors.required">
+        验证码不能为空.
+      </div>
+      <div *ngIf="codeValid.errors.fcVerifyCodeName">
+        验证码不正确.
+      </div>
+    </div>
+  </div>
+</div>

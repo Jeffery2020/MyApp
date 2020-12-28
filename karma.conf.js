@@ -1,3 +1,11 @@
+/*
+ * @Author: Jeffery
+ * @Date: 2019-07-05 16:11:36
+ * @LastEditors: Jeffery
+ * @LastEditTime: 2020-02-14 12:32:47
+ * @Description:
+ * @email: 286630433@qq.com
+ */
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
@@ -9,7 +17,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage'),
+      require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -18,24 +26,16 @@ module.exports = function (config) {
       // },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    // jasmineHtmlReporter: {
-    //   suppressAll: true // removes the duplicated traces
-    // },
-    coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/MyApp'),
-      // subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' },
-        {type:'lcovonly'},
-        // fixWebpackSourcePaths: true,
-        // thresholds: { // 假设你希望代码有最少 80% 的代码覆盖率。 要启用它
-        //   statements: 80,
-        //   lines: 80,
-        //   branches: 80,
-        //   functions: 80
-        // }
-      ]
+    coverageIstanbulReporter: {
+      dir: require('path').join(__dirname, './coverage/fc-angular'),
+      reports: ['html', 'lcovonly', 'text-summary'],
+      fixWebpackSourcePaths: true,
+      // thresholds: { // 假设你希望代码有最少 80% 的代码覆盖率。 要启用它
+      //   statements: 80,
+      //   lines: 80,
+      //   branches: 80,
+      //   functions: 80
+      // }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,

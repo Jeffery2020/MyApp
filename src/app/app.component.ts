@@ -1,9 +1,11 @@
 /*
-*@Description:
-*@Author:Jeffery
-*@Date:2020/12/25
-*/
-
+ * @Author: Jeffery
+ * @LastEditors: Jeffery
+ * @Description: app入口
+ * @email: 286630433@qq.com
+ * @Date: 2019-02-18 10:44:05
+ * @LastEditTime: 2019-04-17 10:16:54
+ */
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,5 +13,4 @@ import { Component } from '@angular/core';
   template: `<router-outlet></router-outlet>`
 })
 export class AppComponent {
-
 }

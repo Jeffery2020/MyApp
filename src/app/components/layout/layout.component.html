@@ -1,0 +1,187 @@
+<!--
+ * @Author: Jeffery
+ * @LastEditors: Jeffery
+ * @Description: 整体布局，包括顶部工具栏、左侧导航、侧边栏、选项卡导航、内容区
+ * @email: 286630433@qq.com
+ * @Date: 2019-04-16 15:57:43
+ * @LastEditTime: 2019-10-16 17:44:42
+ -->
+<nz-layout class="layout">
+  <!-- 顶部工具栏 -->
+  <nz-header>
+    <div class="logo fc-header-left">
+      <img src="assets/image/logo.png" [ngStyle]="{'display': menuWidth===64 ?'none':'inline'}" alt="logo">
+      <img src="assets/image/small-logo.png" [ngStyle]="{'display': menuWidth===64 ?'inline':'none'}" alt="logo">
+      <div class="fc-header-icon-wrap">
+        <i class="icon iconfont fc-header-toggle"
+          [ngClass]="{'fc-icon-menufold-left':menuWidth===64,'fc-icon-menufold-right':menuWidth!==64}"
+          (click)="toggleLayout()"></i>
+      </div>
+      <div class="fc-header-icon-wrap">
+        <a href="https://github.com/FE-free/fc-angular" target="_blank"
+          title="icon iconfont fc-icon-github fc-header-github"><i
+            class="icon iconfont fc-icon-github fc-header-github"></i></a>
+      </div>
+    </div>
+    <div class="fc-header-right">
+      <div class="fc-header-icon-wrap">
+        <i class="icon iconfont fc-header-icon fc-icon-information" (click)="toggleSidebar()" title="消息"></i>
+      </div>
+      <div class="fc-header-icon-wrap fc-header-dropdown">
+        <a nz-dropdown [nzDropdownMenu]="headerMenu" [nzPlacement]="'bottomRight'" [nzOverlayStyle]="{top:'18px' }">
+          <nz-avatar class="avatar" [nzSize]="32" nzIcon="user" [nzSrc]="avatar"></nz-avatar>
+          <a class="text">{{companyName}}</a>
+        </a>
+        <nz-dropdown-menu #headerMenu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item> <i class="icon iconfont fc-header-icon fc-icon-peizhi"></i> 设置
+            </li>
+            <li nz-menu-item> <i class="icon iconfont fc-header-icon fc-icon-personnel"></i> 个人中心
+            </li>
+            <li nz-menu-item (click)="editPassWord()"> <i class="icon iconfont fc-header-icon fc-icon-password"></i>
+              修改密码
+            </li>
+            <li nz-menu-item (click)="clearCache()"> <i class="icon iconfont fc-header-icon fc-icon-clear"></i>
+              清除缓存
+            </li>
+            <li nz-menu-item (click)="siginout()"> <i class=" icon iconfont fc-header-icon fc-icon-tuichu"></i> 退出
+            </li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </nz-header>
+  <nz-layout style="width: 100%;">
+    <!-- 菜单导航 -->
+    <nz-sider [(nzWidth)]="menuWidth" Ø class="fc-sidebar-menu">
+      <ul nz-menu [nzMode]="'inline'" style="height: calc(100% - 40px);overflow: auto;"
+        [nzInlineCollapsed]="menuIsCollapsed">
+        <ng-container *ngFor="let menu of _menus">
+          <!-- 一级菜单，没有下级 -->
+          <li nz-menu-item *ngIf="menu.HASCHILD==='N'" (click)="selectedMenu(menu)">
+            <span title>
+              <i class="icon iconfont menu-icon" [ngClass]="menu.MENUICON"></i>
+              <span class="first-level-title">{{menu.MENUNAME}}</span>
+            </span>
+          </li>
+          <!-- 一级菜单，有下级 -->
+          <li nz-submenu [nzOpen]="true"
+            *ngIf="menu.HASCHILD==='Y' && menu.P_CHILDMENUS && menu.P_CHILDMENUS.length!==0">
+            <span title>
+              <i class="icon iconfont menu-icon" [ngClass]="menu.MENUICON"></i>
+              <span class="first-level-title">{{menu.MENUNAME}}</span></span>
+            <ul>
+              <ng-container *ngFor="let childMenu of menu.P_CHILDMENUS">
+                <!-- 二级菜单，没有下级 -->
+                <li nz-menu-item *ngIf="childMenu.HASCHILD==='N'" (click)="selectedMenu(childMenu);">
+                  <span title>
+                    <span>{{childMenu.MENUNAME}}</span>
+                  </span>
+                </li>
+                <!-- 二级菜单，有下级 -->
+                <li nz-submenu
+                  *ngIf="childMenu.HASCHILD==='Y' && childMenu.P_CHILDMENUS && childMenu.P_CHILDMENUS.length!==0">
+                  <span title>
+                    <i class="icon iconfont menu-icon" [ngClass]="childMenu.MENUICON"></i>
+                    <span>{{childMenu.MENUNAME}}</span>
+                  </span>
+                  <ul>
+                    <ng-container *ngFor="let grandSonMenu of childMenu.P_CHILDMENUS">
+                      <!-- 三级级菜单，没有下级 -->
+                      <li nz-menu-item *ngIf="grandSonMenu.HASCHILD==='N'" (click)="selectedMenu(grandSonMenu);">
+                        <span title>
+                          {{grandSonMenu.MENUNAME}}</span>
+                      </li>
+                      <!-- 三级菜单，有下级 -->
+                      <li nz-submenu
+                        *ngIf="grandSonMenu.HASCHILD==='Y' && grandSonMenu.P_CHILDMENUS && grandSonMenu.P_CHILDMENUS.length!==0">
+                        <span title>
+                          {{grandSonMenu.MENUNAME}}</span>
+                        <ul>
+                          <li nz-menu-item *ngFor="let lastChidMenu of grandSonMenu.P_CHILDMENUS"
+                            (click)="selectedMenu(lastChidMenu)">
+                            <span title>
+                              {{lastChidMenu.MENUNAME}}</span>
+                          </li>
+                        </ul>
+                      </li>
+                    </ng-container>
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ul>
+      <!-- 切换布局控制按钮 -->
+      <div class="layout-toggle">
+        <i class="icon iconfont fc-icon-arrowleft" [ngClass]="{'arrowright':menuWidth===64}" (click)="toggleLayout()">
+        </i>
+      </div>
+    </nz-sider>
+    <nz-layout>
+      <!-- 选项卡导航 -->
+      <nz-tabset class="fc-tabnav" [nzType]="'line'" [nzSize]="'small'" [(nzSelectedIndex)]="fcSelectedIndex">
+        <nz-tab *ngFor="let tab of fcTabs;index as i" (nzClick)="selectedTabMenu(tab)" [nzTitle]="titleTemplate">
+          <ng-template #titleTemplate>
+            <div [ngClass]="{'tab-home':i===0}">
+              <i *ngIf="tab.icon!==''" class="icon iconfont" [ngClass]="tab.icon"></i>
+              {{ tab.name }}<i *ngIf="i>0" nz-icon type="close" class="ant-tabs-close-x" (click)="closeTabNav(tab)"></i>
+            </div>
+          </ng-template>
+        </nz-tab>
+      </nz-tabset>
+      <!-- 内容区 -->
+      <nz-content class="fc-main-wrap">
+        <div class="fc-main">
+          <router-outlet [ngStyle]="{'height':'100%'}"></router-outlet>
+        </div>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
+<!-- 消息侧边栏 -->
+<div class="navside">
+  <nz-drawer [nzWidth]="300" [nzWrapClassName]="'navside-drawer'" [nzMaskStyle]="{'height':'auto'}"
+    nzWrapClassName="navside-drawer" [nzClosable]="false" [nzVisible]="navsideVisible" nzPlacement="right" nzTitle=""
+    (nzOnClose)="closeNavSide()" #navside>
+    <nz-tabset>
+      <nz-tab [nzTitle]="noReadTemplate">
+        <ng-template #noReadTemplate>未读消息</ng-template>
+        <div class="navside-message navside-message-noread">
+          <nz-list [nzDataSource]="noReadMessage" [nzBordered]="false" [nzSplit]="false" [nzFooter]="'共有 50 条消息.'"
+            [nzRenderItem]="noReadItem">
+            <ng-template #noReadItem let-item>
+              <nz-list-item>
+                <span class="ant-typography navside-information-icon"><i
+                    class="icon iconfont fc-header-icon fc-icon-xiaoxi"></i></span>
+                <div class="navside-item-content">
+                  <div class="navside-title"> {{ item.title }}</div>
+                  <div class="navside-time"> {{ item.time }}</div>
+                </div>
+              </nz-list-item>
+            </ng-template>
+          </nz-list>
+        </div>
+      </nz-tab>
+      <nz-tab [nzTitle]="isReadTemplate">
+        <ng-template #isReadTemplate>已读消息</ng-template>
+        <div class="navside-message navside-message-isread">
+          <nz-list [nzDataSource]="isReadMessage" [nzBordered]="false" [nzSplit]="false" [nzFooter]="'共有 50 条消息.'"
+            [nzRenderItem]="isReadItem">
+            <ng-template #isReadItem let-item>
+              <nz-list-item>
+                <span class="ant-typography navside-information-icon"><i
+                    class="icon iconfont fc-header-icon fc-icon-xiaoxi"></i></span>
+                <div class="navside-item-content">
+                  <div class="navside-title"> {{ item.title }}</div>
+                  <div class="navside-time"> {{ item.time }}</div>
+                </div>
+              </nz-list-item>
+            </ng-template>
+          </nz-list>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </nz-drawer>
+</div>
