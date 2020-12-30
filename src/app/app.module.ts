@@ -23,6 +23,7 @@ import { FcRouteReuseStrategy } from './service/routereusestrategy.service';
 import { ShareService } from './share.service';
 import { SyssigninComponent } from 'src/feature/fc/fcsystem/components/syspassword/syssignin/syssignin.component';
 import { UserService } from 'src/fccore/service/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(zh);
 
@@ -31,6 +32,7 @@ registerLocaleData(zh);
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
+    HttpClientModule,
     FccoreModule,
     FccomponentModule,
     SharedModule,

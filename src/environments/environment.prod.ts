@@ -17,9 +17,9 @@ export const environment = {
   pid: "FC",
   projectName: "fc-angular",
   systemurl: "/server/",
-  apiurl: "/server/api/",
-  logurl: "/server/api/",
-  authurl: "/server/api/",
+  apiurl: "/server/",
+  logurl: "/server/",
+  authurl: "/server/",
   wsurl: "",
   license: ''
 };

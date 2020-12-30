@@ -1,5 +1,8 @@
 {
+  "/log": {
+    "target": "http://localhost:8012/services/log.svc"
+  },
   "/server": {
-    "target": "http://localhost:3000/"
+    "target": "http://localhost:8012/services/Sys.svc"
   }
 }
