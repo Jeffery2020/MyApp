@@ -2,12 +2,12 @@ import { OnInit, Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { isArray } from 'util';
 
 /*
- * @Author: Jeffery
+ * @Author: honghong
  * @Date: 2019-10-17 09:43:45
- * @LastEditors: Jeffery
+ * @LastEditors: honghong
  * @LastEditTime: 2019-10-18 14:10:50
- * @Description:
- * @email: 286630433@qq.com
+ * @Description: 
+ * @email: 3300536651@qq.com
  */
 @Component({
     selector: 'fc-verifycode',
@@ -62,7 +62,7 @@ export class Fcverifycode implements OnInit {
     //生成并渲染出验证码图形
     draw(show_num) {
         let elem = this.canvasRef.nativeElement;
-        //  console.dir(elem);
+        console.dir(elem);
         // let canvas_width = elem.offsetWidth;
         // let canvas_height = elem.offsetHeight;
         let canvas_width = 100;

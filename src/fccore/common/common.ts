@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
- * @LastEditors: Jeffery
+ * @Author: honghong
+ * @LastEditors: honghong
  * @Description: 公共方法
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-16 15:57:43
  * @LastEditTime: 2020-03-03 15:20:39
  */
@@ -87,25 +87,16 @@ export class CommonService {
    * @param key
    */
   static getCookie(key) {
-    let arr1 = document.cookie.split('; ');  // 由于cookie是通过一个分号+空格的形式串联起来的，所以这里需要先按分号空格截断,变成[name=Jack,pwd=123456,age=22]数组类型；
-
+    let arr1 = document.cookie.split('; '); // 由于cookie是通过一个分号+空格的形式串联起来的，所以这里需要先按分号空格截断,变成[name=Jack,pwd=123456,age=22]数组类型；
     for (var i = 0; i < arr1.length; i++) {
-      var arr2 = arr1[i].split('='); // 通过=截断，把name=Jack截断成[name,Jack]数组；
+      var arr2 = arr1[i].split('='); //通过=截断，把name=Jack截断成[name,Jack]数组；
       if (arr2[0] === key) {
         return decodeURI(arr2[1]);
       }
     }
   }
-
-  static getUserInfoCookie(key) {
-    let arr,reg=new RegExp("(^| )"+key+"=([^;]*)(;|$)");
-    if(arr=document.cookie.match(reg))
-      return decodeURI(arr[2]);
-    else
-      return null;
-  }
   /**
-   *
+   * 
    * @param key 名称
    * @param value 值
    * @param expiredays 时间（秒）
@@ -550,7 +541,7 @@ export class CommonService {
      * @param obs2 Observable
      */
   static createObservableConcat(observable1, observable2): Observable<any> {
-    // 注意最新的官方文档和RxJS v5.x 到 6 的更新指南中指出不推荐使用
+    // 注意最新的官方文档和RxJS v5.x 到 6 的更新指南中指出不推荐使用 
     // merge、concat、combineLatest、race、zip 这些操作符方法，
     // 而是推荐使用对应的静态方法 ，参考Scheduled和concatAll
     return concat(observable1, observable2);

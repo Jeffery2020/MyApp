@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
+ * @Author: honghong
  * @LastEditors  : Please set LastEditors
  * @Description: 根模块
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-16 15:57:43
  * @LastEditTime : 2020-03-02 14:40:08
  */
@@ -21,18 +21,20 @@ import { LayoutModule } from './components/layout/layout.module';
 import { LayoutService } from './service/layout.service';
 import { FcRouteReuseStrategy } from './service/routereusestrategy.service';
 import { ShareService } from './share.service';
+import { SysforgotComponent } from 'src/feature/fc/fcsystem/components/syspassword/sysforgot/sysforgot.component';
 import { SyssigninComponent } from 'src/feature/fc/fcsystem/components/syspassword/syssignin/syssignin.component';
+import { SyssignupComponent } from 'src/feature/fc/fcsystem/components/syspassword/syssignup/syssignup.component';
 import { UserService } from 'src/fccore/service/user.service';
-import { HttpClientModule } from '@angular/common/http';
 
-registerLocaleData(zh);
+
+
+registerLocaleData(zh)
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
-    HttpClientModule,
     FccoreModule,
     FccomponentModule,
     SharedModule,
@@ -42,6 +44,8 @@ registerLocaleData(zh);
     AppComponent, // app入口
 
     SyssigninComponent, // 组件-登录
+    SysforgotComponent, // 组件-忘记密码
+    SyssignupComponent // 组件-注册
   ],
   providers: [
     UserService, // 服务-用户

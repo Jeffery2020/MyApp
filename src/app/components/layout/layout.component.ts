@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
- * @LastEditors: Jeffery
+ * @Author: honghong
+ * @LastEditors: honghong
  * @Description: 整体布局包括顶部工具栏、左侧菜单、侧边栏、选项卡导航主体内容区
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-16 15:57:43
  * @LastEditTime: 2019-10-16 17:59:22
  */
@@ -255,7 +255,7 @@ import { SyseditpasswordComponent } from './dialog/syseditpassword.dialog';
       ::ng-deep .navside-drawer .ant-tabs-nav {
         width: 100%;
       }
-      ::ng-deep .navside-drawer .ant-tabs .ant-tabs-top-content > .ant-tabs-tabpane,
+      ::ng-deep .navside-drawer .ant-tabs .ant-tabs-top-content > .ant-tabs-tabpane, 
       ::ng-deep .navside-drawer .ant-tabs .ant-tabs-bottom-content > .ant-tabs-tabpane {
         height: calc(100% - 60px);
         overflow: auto;

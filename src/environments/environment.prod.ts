@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
- * @LastEditors: Jeffery
+ * @Author: honghong
+ * @LastEditors: honghong
  * @Description: 上线环境的环境配置,上线环境需要过aot打包，命令ng build --aot
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-12 16:39:30
  * @LastEditTime: 2019-07-11 16:49:04
  */
@@ -17,9 +17,9 @@ export const environment = {
   pid: "FC",
   projectName: "fc-angular",
   systemurl: "/server/",
-  apiurl: "/server/",
-  logurl: "/server/",
-  authurl: "/server/",
+  apiurl: "/server/api/",
+  logurl: "/server/api/",
+  authurl: "/server/api/",
   wsurl: "",
   license: ''
 };

@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
- * @LastEditors: Jeffery
+ * @Author: honghong
+ * @LastEditors: honghong
  * @Description: 共享模块
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-19 10:08:26
  * @LastEditTime: 2019-04-19 10:12:39
  */

@@ -1,10 +1,10 @@
 /*
- * @Author: Jeffery
+ * @Author: honghong
  * @Date: 2019-07-04 17:15:57
- * @LastEditors: Jeffery
+ * @LastEditors: honghong
  * @LastEditTime: 2019-10-15 10:55:06
- * @Description:
- * @email: 286630433@qq.com
+ * @Description: 
+ * @email: 3300536651@qq.com
  */
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -25,7 +25,7 @@ import { NzModalRef } from 'ng-zorro-antd';
   `]
 })
 export class SyseditpasswordComponent implements OnInit {
-  //
+  // 
   validateForm: FormGroup;
   // 原密码
   @Input()

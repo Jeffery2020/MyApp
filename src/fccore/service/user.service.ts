@@ -1,10 +1,3 @@
-
-/*
-* @Description:
-* @Author: Jeffery
-* @Date: 2020/12/28
-*/
-
 import { CommonService } from 'src/fccore/common/common';
 import { CacheService } from 'src/fccore/common/cache';
 import { Injectable } from '@angular/core';
@@ -44,25 +37,22 @@ export class UserService implements CanActivate {
       AID: 'SYSUSER',
       LOGINDATE: loginDate
     };
-    const cookeName = 'loginInfo';
     // 登录信息mock数据
     const info = JSON.stringify({
       PASSWORD: CommonService.enCode64('admin'), // admin
       USERID: CommonService.enCode64('admin') // admin
     });
-
-    CommonService.addCookie(cookeName, info, 0);
-    const loginInfo =  CommonService.getUserInfoCookie(cookeName);
+    CommonService.addCookie('loginInfo', info, 0);
+    const loginInfo =  CommonService.getCookie('loginInfo');
+    console.log(loginInfo, '=====loginInfo');
     const validateData = JSON.parse(loginInfo);
-
     /** @type {?} */
     const data = {
       PASSWORD: CommonService.enCode64(password),
       USERID: CommonService.enCode64(userId)
-    };
-
+    }
+      ;
     if (validateData.USERID === data.USERID && validateData.PASSWORD === data.PASSWORD) {
-
       return of({
         code: '0',
         message: '登录成功'
@@ -74,7 +64,9 @@ export class UserService implements CanActivate {
       });
     }
     return;
-
+    // return this.daoService.
+    // postFromApi(CommonService.getUrlBy
+    // (this.moduleId, this.serviceId, InterfaceMethod.LOGIN), data, param);
   }
   /**
    * @description 存储用户数据
@@ -105,7 +97,7 @@ export class UserService implements CanActivate {
       };
       // 请求注销
       return;
-      // return this.daoService.getFromAuth(CommonService.getUrlBy(this.moduleId,
+      // return this.daoService.getFromAuth(CommonService.getUrlBy(this.moduleId, 
       // this.serviceId, InterfaceMethod.LOGOUT), param);
     }
   }

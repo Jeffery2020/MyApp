@@ -1,8 +1,8 @@
 /*
- * @Author: Jeffery
+ * @Author: honghong
  * @LastEditors  : Please set LastEditors
  * @Description: 开发环境的环境配置
- * @email: 286630433@qq.com
+ * @email: 3300536651@qq.com
  * @Date: 2019-04-12 16:39:30
  * @LastEditTime : 2020-01-16 09:38:17
  */
@@ -13,12 +13,12 @@
 // 开发环境
 export const environment = {
   production: false,
-  pid: "FC",
+  pid: "FC",  
   projectName: "fc-angular",
   systemurl: "/server/",
-  apiurl: "/server/",
-  logurl: "/server/",
-  authurl: "/server/",
+  apiurl: "/server/api/",
+  logurl: "/server/api/",
+  authurl: "/server/api/",
   wsurl: "",
   license: ''
 }
